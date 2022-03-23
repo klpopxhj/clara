@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
+import Link from "gatsby-plugin-transition-link";
 import Container from "./container";
 import { useStaticQuery, graphql } from "gatsby";
 
@@ -26,19 +27,27 @@ const Header = () => {
 
         <HeaderNavList>
           <HeaderNavListItem>
-            <Link to="/blog">Blog</Link>
+            <AniLink paintDrip hex="#d9e4f5" to="/blog">
+              Blog
+            </AniLink>
           </HeaderNavListItem>
 
           <HeaderNavListItem>
-            <Link to="/about">About</Link>
+            <AniLink paintDrip hex="#f5e3e6" to="/about">
+              About
+            </AniLink>
           </HeaderNavListItem>
 
           <HeaderNavListItem>
-            <Link to="/services">Services</Link>
+            <AniLink paintDrip hex="#d9e4f5" to="/services">
+              Services
+            </AniLink>
           </HeaderNavListItem>
 
           <HeaderNavListItem>
-            <Link to="/contact">Contact</Link>
+            <AniLink paintDrip hex="#f5e3e6" to="/contact">
+              Contact
+            </AniLink>
           </HeaderNavListItem>
         </HeaderNavList>
       </HeaderWrapper>
