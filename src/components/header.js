@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import Link from "gatsby-plugin-transition-link";
 import Container from "./container";
 import { useStaticQuery, graphql } from "gatsby";
+
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme, GlobalStyles } from "./theme.js";
 
 const Header = () => {
   const { site } = useStaticQuery(
@@ -18,40 +21,74 @@ const Header = () => {
     `
   );
 
+  const [theme, setTheme] = useState("light");
+  const switchTheme = () => {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+    localStorage.setItem("theme", theme);
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedTheme && ["dark", "light"].includes(savedTheme)) {
+      setTheme(savedTheme);
+    } else if (prefersDark) {
+      setTheme("dark");
+    }
+  }, []);
+
   return (
-    <StyledHeader>
-      <HeaderWrapper>
-        <HeaderTitle>
-          <Link to="/">{site.siteMetadata.title}</Link>
-        </HeaderTitle>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <StyledHeader>
+        <HeaderWrapper>
+          <HeaderTitle>
+            <Link to="/">{site.siteMetadata.title}</Link>
+          </HeaderTitle>
 
-        <HeaderNavList>
-          <HeaderNavListItem>
-            <AniLink paintDrip hex="#d9e4f5" to="/blog">
-              Blog
-            </AniLink>
-          </HeaderNavListItem>
+          <HeaderNavList>
+            <HeaderNavListItem>
+              <AniLink paintDrip hex="#d9e4f5" to="/blog">
+                Blog
+              </AniLink>
+            </HeaderNavListItem>
 
-          <HeaderNavListItem>
-            <AniLink paintDrip hex="#f5e3e6" to="/about">
-              About
-            </AniLink>
-          </HeaderNavListItem>
+            <HeaderNavListItem>
+              <AniLink paintDrip hex="#f5e3e6" to="/about">
+                About
+              </AniLink>
+            </HeaderNavListItem>
 
-          <HeaderNavListItem>
-            <AniLink paintDrip hex="#d9e4f5" to="/services">
-              Services
-            </AniLink>
-          </HeaderNavListItem>
+            <HeaderNavListItem>
+              <AniLink paintDrip hex="#d9e4f5" to="/services">
+                Services
+              </AniLink>
+            </HeaderNavListItem>
 
-          <HeaderNavListItem>
-            <AniLink paintDrip hex="#f5e3e6" to="/contact">
-              Contact
-            </AniLink>
-          </HeaderNavListItem>
-        </HeaderNavList>
-      </HeaderWrapper>
-    </StyledHeader>
+            <HeaderNavListItem>
+              <AniLink paintDrip hex="#f5e3e6" to="/contact">
+                Contact
+              </AniLink>
+            </HeaderNavListItem>
+            <HeaderNavList>
+              <button onClick={switchTheme}>
+                {theme === "dark" ? (
+                  <span aria-label="Light mode" role="img">
+                    🌞
+                  </span>
+                ) : (
+                  <span aria-label="Dark mode" role="img">
+                    🌜
+                  </span>
+                )}
+              </button>{" "}
+            </HeaderNavList>
+          </HeaderNavList>
+        </HeaderWrapper>
+      </StyledHeader>
+    </ThemeProvider>
   );
 };
 

@@ -1,24 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import PostList from "../components/post-list";
 import styled from "styled-components";
 import StyledLink from "../components/styled-link";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme, GlobalStyles } from "../components/theme.js";
 
 const HomePage = ({ data }) => {
   const posts = data.allMarkdownRemark.nodes;
   const intro = data.markdownRemark.html;
   const title = data.markdownRemark.frontmatter.title;
 
-  return (
-    <Layout title={title}>
-      <Intro
-        dangerouslySetInnerHTML={{
-          __html: intro,
-        }}
-      />
+  const [theme, setTheme] = useState("light");
+  const switchTheme = () => {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+    localStorage.setItem("theme", theme);
+  };
 
-      {/* <PostList posts={posts} />
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedTheme && ["dark", "light"].includes(savedTheme)) {
+      setTheme(savedTheme);
+    } else if (prefersDark) {
+      setTheme("dark");
+    }
+  }, []);
+
+  return (
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <Layout title={title}>
+        <Intro
+          dangerouslySetInnerHTML={{
+            __html: intro,
+          }}
+        />
+
+        {/* <PostList posts={posts} />
       <StyledLink
         css={`
           display: block;
@@ -32,7 +54,8 @@ const HomePage = ({ data }) => {
       >
         View All posts
       </StyledLink> */}
-    </Layout>
+      </Layout>
+    </ThemeProvider>
   );
 };
 
