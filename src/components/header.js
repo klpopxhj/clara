@@ -22,9 +22,12 @@ const Header = () => {
   );
 
   const [theme, setTheme] = useState("light");
-  const switchTheme = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
-    localStorage.setItem("theme", theme);
+  const isDarkTheme = theme === "dark";
+
+  const toggleTheme = () => {
+    const updatedTheme = isDarkTheme ? "light" : "dark";
+    setTheme(updatedTheme);
+    localStorage.setItem("theme", updatedTheme);
   };
 
   useEffect(() => {
@@ -73,7 +76,7 @@ const Header = () => {
               </AniLink>
             </HeaderNavListItem>
             <HeaderNavList>
-              <button onClick={switchTheme}>
+              <button onClick={toggleTheme}>
                 {theme === "dark" ? (
                   <span aria-label="Light mode" role="img">
                     🌞

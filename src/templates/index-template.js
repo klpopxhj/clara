@@ -13,9 +13,12 @@ const HomePage = ({ data }) => {
   const title = data.markdownRemark.frontmatter.title;
 
   const [theme, setTheme] = useState("light");
-  const switchTheme = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
-    localStorage.setItem("theme", theme);
+  const isDarkTheme = theme === "dark";
+
+  const toggleTheme = () => {
+    const updatedTheme = isDarkTheme ? "light" : "dark";
+    setTheme(updatedTheme);
+    localStorage.setItem("theme", updatedTheme);
   };
 
   useEffect(() => {
