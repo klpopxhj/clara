@@ -11,6 +11,8 @@ const HomePage = ({ data }) => {
   const posts = data.allMarkdownRemark.nodes;
   const intro = data.markdownRemark.html;
   const title = data.markdownRemark.frontmatter.title;
+  const ctaText = data.markdownRemark.frontmatter.ctaText;
+  const ctaLink = data.markdownRemark.frontmatter.ctaLink;
 
   const [theme, setTheme] = useState("light");
   const isDarkTheme = theme === "dark";
@@ -42,7 +44,9 @@ const HomePage = ({ data }) => {
             __html: intro,
           }}
         />
-
+        <Button>
+          <StyledLink to={ctaLink}>{ctaText}</StyledLink>
+        </Button>
         {/* <PostList posts={posts} />
       <StyledLink
         css={`
@@ -87,6 +91,17 @@ const Intro = styled.div`
   }
 `;
 
+const Button = styled.button`
+  display: flex;
+  flex-direction: column;
+  max-width: 60ch;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: var(--size-800);
+  margin-bottom: var(--size-900);
+  text-align: center;
+`;
 export const pageQuery = graphql`
   query($slug: String!) {
     site {
@@ -117,6 +132,8 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        ctaText
+        ctaLink
       }
     }
   }

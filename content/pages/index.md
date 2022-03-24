@@ -1,8 +1,10 @@
 ---
 template: "index-template"
 title: "Gatsby Starter Glass"
+ctaText: "Learn More"
+ctaLink: "/about"
 ---
 
-# QuantCtrl
+# Manufacturing Analytics Made Easy.
 
-Transforming data into intelligence
+We design custom cloud-based solutions to deliver predictive analytics to solve problems supply and demand forecasting.
