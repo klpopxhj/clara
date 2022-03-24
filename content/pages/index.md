@@ -1,8 +1,8 @@
 ---
-template: 'index-template'
-title: 'Gatsby Starter Glass'
+template: "index-template"
+title: "Gatsby Starter Glass"
 ---
 
-#Hello World
+# QuantCtrl
 
-A minimal & beautiful gatsby personal blog starter with nice glassmorphism UI.
+Transforming data into intelligence

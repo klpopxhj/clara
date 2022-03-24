@@ -1,15 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Glass`,
+    title: `QuantCtrl`,
     author: {
-      name: `Yinka Adedire`,
-      summary: `Self-taught front-end web dev. JAMStack.`,
+      name: `QuantCtrl`,
+      summary: `IT Services and IT Consulting.`,
     },
     openGraphImage: `open-graph-image.png`,
-    description: `A minimal & beautiful gatsby personal blog starter with a nice glassmorphism UI.`,
-    siteUrl: `https://gatsbyglass.netlify.app`,
+    description: `Transforming data into intelligence.`,
+    siteUrl: `https://quantctrl.com`,
     social: {
-      twitter: `yinkakun`,
+      linkedin: `quantctrl`,
     },
     socialLinks: [
       {
