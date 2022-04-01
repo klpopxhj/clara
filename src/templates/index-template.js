@@ -8,7 +8,7 @@ import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "../components/theme.js";
 
 const HomePage = ({ data }) => {
-  const posts = data.allMarkdownRemark.nodes;
+  // const posts = data.allMarkdownRemark.nodes;
   const intro = data.markdownRemark.html;
   const title = data.markdownRemark.frontmatter.title;
   const ctaText = data.markdownRemark.frontmatter.ctaText;
@@ -23,17 +23,17 @@ const HomePage = ({ data }) => {
     localStorage.setItem("theme", updatedTheme);
   };
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (savedTheme && ["dark", "light"].includes(savedTheme)) {
-      setTheme(savedTheme);
-    } else if (prefersDark) {
-      setTheme("dark");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const savedTheme = localStorage.getItem("theme");
+  //   const prefersDark =
+  //     window.matchMedia &&
+  //     window.matchMedia("(prefers-color-scheme: dark)").matches;
+  //   if (savedTheme && ["dark", "light"].includes(savedTheme)) {
+  //     setTheme(savedTheme);
+  //   } else if (prefersDark) {
+  //     setTheme("dark");
+  //   }
+  // }, []);
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>

@@ -113,10 +113,10 @@ const StyledHeader = styled.header`
   padding-top: var(--size-300);
 `;
 
-const HeaderWrapper = styled(Container)`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+const HeaderWrapper = tw(Container)`
+    flex
+    items-center
+    justify-center
 `;
 
 const HeaderTitle = styled.div`
