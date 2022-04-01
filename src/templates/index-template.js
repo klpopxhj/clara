@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
-import PostList from "../components/post-list";
 import styled from "styled-components";
 import StyledLink from "../components/styled-link";
-import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme, GlobalStyles } from "../components/theme.js";
+import Newsletter from "../components/newsletter";
+import Hero from "../components/hero";
+import Featured from "../components/featured";
+
+import tw from "tailwind-styled-components";
 
 const HomePage = ({ data }) => {
   // const posts = data.allMarkdownRemark.nodes;
@@ -14,55 +16,20 @@ const HomePage = ({ data }) => {
   const ctaText = data.markdownRemark.frontmatter.ctaText;
   const ctaLink = data.markdownRemark.frontmatter.ctaLink;
 
-  const [theme, setTheme] = useState("light");
-  const isDarkTheme = theme === "dark";
-
-  const toggleTheme = () => {
-    const updatedTheme = isDarkTheme ? "light" : "dark";
-    setTheme(updatedTheme);
-    localStorage.setItem("theme", updatedTheme);
-  };
-
-  // useEffect(() => {
-  //   const savedTheme = localStorage.getItem("theme");
-  //   const prefersDark =
-  //     window.matchMedia &&
-  //     window.matchMedia("(prefers-color-scheme: dark)").matches;
-  //   if (savedTheme && ["dark", "light"].includes(savedTheme)) {
-  //     setTheme(savedTheme);
-  //   } else if (prefersDark) {
-  //     setTheme("dark");
-  //   }
-  // }, []);
-
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <GlobalStyles />
-      <Layout title={title}>
-        <Intro
-          dangerouslySetInnerHTML={{
-            __html: intro,
-          }}
-        />
-        <Button>
-          <StyledLink to={ctaLink}>{ctaText}</StyledLink>
-        </Button>
-        {/* <PostList posts={posts} />
-      <StyledLink
-        css={`
-          display: block;
-          margin-top: var(--size-800);
-          margin-bottom: var(--size-800);
-          margin-left: auto;
-          margin-right: auto;
-          width: fit-content;
-        `}
-        to="/blog"
-      >
-        View All posts
-      </StyledLink> */}
-      </Layout>
-    </ThemeProvider>
+    <Layout title={title}>
+      <Intro
+        dangerouslySetInnerHTML={{
+          __html: intro,
+        }}
+      />
+      <Hero />
+      <Featured />
+      {/* <Button>
+        <StyledLink to={ctaLink}>{ctaText}</StyledLink>
+      </Button> */}
+      <Newsletter />
+    </Layout>
   );
 };
 
@@ -91,16 +58,18 @@ const Intro = styled.div`
   }
 `;
 
-const Button = styled.button`
-  display: flex;
-  flex-direction: column;
-  max-width: 60ch;
-  align-items: center;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: var(--size-800);
-  margin-bottom: var(--size-900);
-  text-align: center;
+const Button = tw.button`
+  flex
+  flex-col	
+  max-w-prose	
+  items-center	
+  mx-auto	
+  my-4
+  text-center	
+  theme-dark
+  bg-primary
+  text-text-main
+
 `;
 export const pageQuery = graphql`
   query($slug: String!) {

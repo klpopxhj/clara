@@ -159,6 +159,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    "gatsby-plugin-postcss",
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-dark-mode`,
   ],
 };

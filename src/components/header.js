@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import Link from "gatsby-plugin-transition-link";
 import Container from "./container";
 import { useStaticQuery, graphql } from "gatsby";
 
-import { ThemeProvider } from "styled-components";
-import { darkTheme, lightTheme, GlobalStyles } from "./theme.js";
+import ThemeToggle from "./theme-toggle";
+
+import tw from "tailwind-styled-components";
 
 const Header = () => {
   const { site } = useStaticQuery(
@@ -21,77 +22,43 @@ const Header = () => {
     `
   );
 
-  const [theme, setTheme] = useState("light");
-  const isDarkTheme = theme === "dark";
-
-  const toggleTheme = () => {
-    const updatedTheme = isDarkTheme ? "light" : "dark";
-    setTheme(updatedTheme);
-    localStorage.setItem("theme", updatedTheme);
-  };
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (savedTheme && ["dark", "light"].includes(savedTheme)) {
-      setTheme(savedTheme);
-    } else if (prefersDark) {
-      setTheme("dark");
-    }
-  }, []);
-
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <GlobalStyles />
-      <StyledHeader>
-        <HeaderWrapper>
-          <HeaderTitle>
-            <Link to="/">{site.siteMetadata.title}</Link>
-          </HeaderTitle>
+    <StyledHeader>
+      <HeaderWrapper>
+        <HeaderTitle>
+          <Link to="/">{site.siteMetadata.title}</Link>
+        </HeaderTitle>
 
-          <HeaderNavList>
-            <HeaderNavListItem>
-              <AniLink paintDrip hex="#d9e4f5" to="/blog">
-                Blog
-              </AniLink>
-            </HeaderNavListItem>
+        <HeaderNavList>
+          <HeaderNavListItem>
+            <AniLink paintDrip hex="#d9e4f5" to="/blog">
+              Blog
+            </AniLink>
+          </HeaderNavListItem>
 
-            <HeaderNavListItem>
-              <AniLink paintDrip hex="#f5e3e6" to="/about">
-                About
-              </AniLink>
-            </HeaderNavListItem>
+          <HeaderNavListItem>
+            <AniLink paintDrip hex="#f5e3e6" to="/about">
+              About
+            </AniLink>
+          </HeaderNavListItem>
 
-            <HeaderNavListItem>
-              <AniLink paintDrip hex="#d9e4f5" to="/services">
-                Services
-              </AniLink>
-            </HeaderNavListItem>
+          <HeaderNavListItem>
+            <AniLink paintDrip hex="#d9e4f5" to="/services">
+              Services
+            </AniLink>
+          </HeaderNavListItem>
 
-            <HeaderNavListItem>
-              <AniLink paintDrip hex="#f5e3e6" to="/contact">
-                Contact
-              </AniLink>
-            </HeaderNavListItem>
-            <HeaderNavList>
-              <button onClick={toggleTheme}>
-                {theme === "dark" ? (
-                  <span aria-label="Light mode" role="img">
-                    🌞
-                  </span>
-                ) : (
-                  <span aria-label="Dark mode" role="img">
-                    🌜
-                  </span>
-                )}
-              </button>{" "}
-            </HeaderNavList>
-          </HeaderNavList>
-        </HeaderWrapper>
-      </StyledHeader>
-    </ThemeProvider>
+          <HeaderNavListItem>
+            <AniLink paintDrip hex="#f5e3e6" to="/contact">
+              Contact
+            </AniLink>
+          </HeaderNavListItem>
+          <HeaderNavListItem>
+            <ThemeToggle />
+          </HeaderNavListItem>
+        </HeaderNavList>
+      </HeaderWrapper>
+    </StyledHeader>
   );
 };
 
@@ -109,14 +76,15 @@ const HeaderNavListItem = ({ children }) => {
   return <StyledNavListItem>{children}</StyledNavListItem>;
 };
 
-const StyledHeader = styled.header`
-  padding-top: var(--size-300);
+const StyledHeader = tw.header`
+  pt-5
+  theme-dark
 `;
 
 const HeaderWrapper = tw(Container)`
     flex
     items-center
-    justify-center
+    justify-between
 `;
 
 const HeaderTitle = styled.div`
@@ -135,13 +103,14 @@ const StyledNav = styled.nav`
   backdrop-filter: unset;
 `;
 
-const StyledNavList = styled.ul`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 0;
-  list-style-type: none;
+const StyledNavList = tw.ul`
+  flex
+  items-center
+  flex-wrap	
+  justify-around	
+  p-0	
+  list-none	
+  bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100
 `;
 
 const StyledNavListItem = styled.li`
