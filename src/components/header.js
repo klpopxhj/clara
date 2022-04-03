@@ -77,12 +77,12 @@ const HeaderNavListItem = ({ children }) => {
 };
 
 const StyledHeader = tw.header`
-  bg-gray-100
-  text-gray-800
-  dark:bg-gray-800
-    theme-dark
-
-  dark:text-gray-100
+bg-gray-100
+dark:bg-gray-800
+dark:text-gray-100
+text-gray-800
+drop-shadow-md
+  sticky top-0
 `;
 
 const HeaderWrapper = tw(Container)`
@@ -90,6 +90,7 @@ const HeaderWrapper = tw(Container)`
     items-center
     justify-between
     py-3
+    from-accent-100 to-accent-300 via-accent-200 h-2 bg-gradient-to-tr
 `;
 
 const HeaderTitle = tw.div`

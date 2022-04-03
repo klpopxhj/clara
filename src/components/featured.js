@@ -1,7 +1,7 @@
 import React from "react";
 const Featured = () => {
   return (
-    <section className="mb-32 text-gray-800">
+    <section className="mb-32 text-gray-800 dark:text-gray-100">
       <div className="flex flex-wrap items-center">
         <div className="grow-0 shrink-0 basis-auto w-full lg:w-4/12 mb-6 md:mb-0 px-3">
           <p className="uppercase text-blue-600 font-bold mb-6">Features</p>

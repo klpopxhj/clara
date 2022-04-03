@@ -5,6 +5,9 @@ import Footer from "./footer";
 import Container from "./container";
 import styled from "styled-components";
 import GlobalStyle from "./global-styles";
+import Testimonial from "./testimonial";
+
+import tw from "tailwind-styled-components";
 
 const Layout = ({ children, title, description, socialImage = "" }) => {
   return (
@@ -22,17 +25,20 @@ const Layout = ({ children, title, description, socialImage = "" }) => {
 
 export default Layout;
 
-const LayoutWrapper = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+const LayoutWrapper = tw.div`
+  min-h-screen
+  flex	
+  flex-col
+bg-gray-100
+dark:bg-gray-700
+dark:text-gray-100
+text-gray-800
 
   & main {
-    margin-top: auto;
-    margin-bottom: auto;
+    my-auto
   }
 
   & footer {
-    margin-top: auto;
+    mt-auto
   }
 `;

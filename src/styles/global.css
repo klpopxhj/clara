@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body.dark {
-  --primary: #111827;
-  --text-main: white;
-}
-
-body.light {
-  --primary: white;
-  --text-main: #111827;
+@layer base {
+  body {
+    @apply bg-gray-100
+    text-gray-800
+    dark:bg-gray-800
+    dark:text-gray-100
+    dark:bg-gray-800;
+  }
 }

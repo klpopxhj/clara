@@ -6,6 +6,7 @@ import Container from "../components/container";
 import Newsletter from "../components/newsletter";
 import Hero from "../components/hero";
 import Featured from "../components/featured";
+import Testimonial from "../components/testimonial";
 
 import tw from "tailwind-styled-components";
 
@@ -31,6 +32,7 @@ const HomePage = ({ data }) => {
         <StyledLink to={ctaLink}>{ctaText}</StyledLink>
       </Button> */}
           <Newsletter />
+          <Testimonial />
         </Container>
       </Layout>
     </>
