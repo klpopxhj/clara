@@ -1,30 +1,33 @@
-import React from 'react';
-import { graphql, Link } from 'gatsby';
-import Layout from '../components/layout';
-import PostList from '../components/post-list';
-import styled from 'styled-components';
+import React from "react";
+import { graphql, Link } from "gatsby";
+import Layout from "../components/layout";
+import PostList from "../components/post-list";
+import styled from "styled-components";
+import Container from "../components/container";
 
 const Blog = ({ data }) => {
   const posts = data.allMarkdownRemark.nodes;
 
   return (
     <Layout title="Blog">
-      <HeaderWrapper>
-        <h1>Blog</h1>
+      <Container>
+        <HeaderWrapper>
+          <h1>Blog</h1>
 
-        <Link
-          css={`
-            margin-top: var(--size-400);
-            color: inherit;
-            text-transform: uppercase;
-          `}
-          to="/tags"
-        >
-          view all tags
-        </Link>
-      </HeaderWrapper>
+          <Link
+            css={`
+              margin-top: var(--size-400);
+              color: inherit;
+              text-transform: uppercase;
+            `}
+            to="/tags"
+          >
+            view all tags
+          </Link>
+        </HeaderWrapper>
 
-      <PostList posts={posts} />
+        <PostList posts={posts} />
+      </Container>
     </Layout>
   );
 };

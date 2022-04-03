@@ -35,16 +35,16 @@ const Header = () => {
               Blog
             </AniLink>
           </HeaderNavListItem>
-
+          {/* 
           <HeaderNavListItem>
             <AniLink paintDrip hex="#f5e3e6" to="/about">
               About
             </AniLink>
-          </HeaderNavListItem>
+          </HeaderNavListItem> */}
 
           <HeaderNavListItem>
             <AniLink paintDrip hex="#d9e4f5" to="/services">
-              Services
+              Service Model
             </AniLink>
           </HeaderNavListItem>
 
@@ -77,30 +77,34 @@ const HeaderNavListItem = ({ children }) => {
 };
 
 const StyledHeader = tw.header`
-  pt-5
-  theme-dark
+  bg-gray-100
+  text-gray-800
+  dark:bg-gray-800
+    theme-dark
+
+  dark:text-gray-100
 `;
 
 const HeaderWrapper = tw(Container)`
     flex
     items-center
     justify-between
+    py-3
 `;
 
-const HeaderTitle = styled.div`
+const HeaderTitle = tw.div`
   & a {
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: var(--size-400);
-    color: inherit;
+  uppercase
+  no-underline	
+  text-lg	
+  text-inherit
   }
 `;
 
-const StyledNav = styled.nav`
-  position: static;
-  padding: 0;
-  background: transparent;
-  backdrop-filter: unset;
+const StyledNav = tw.nav`
+  static
+  p-0
+  backdrop-blur	
 `;
 
 const StyledNavList = tw.ul`
@@ -110,7 +114,6 @@ const StyledNavList = tw.ul`
   justify-around	
   p-0	
   list-none	
-  bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100
 `;
 
 const StyledNavListItem = styled.li`

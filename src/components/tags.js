@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import Link from "gatsby-plugin-transition-link";
 
 const toKebabCase = (str) => {
   return str

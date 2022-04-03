@@ -1,8 +1,9 @@
-import React from 'react';
-import { Link, graphql } from 'gatsby';
-import Layout from '../components/layout';
-import styled from 'styled-components';
-import Tags from '../components/tags';
+import React from "react";
+import { Link, graphql } from "gatsby";
+import Layout from "../components/layout";
+import styled from "styled-components";
+import Tags from "../components/tags";
+import Container from "../components/container";
 
 const PostTemplate = ({ data }) => {
   const { frontmatter, excerpt, html } = data.markdownRemark;
@@ -14,34 +15,36 @@ const PostTemplate = ({ data }) => {
       title={frontmatter.title}
       description={frontmatter.description || excerpt}
       socialImage={
-        frontmatter.social_image ? frontmatter.social_image.absolutePath : ''
+        frontmatter.social_image ? frontmatter.social_image.absolutePath : ""
       }
     >
-      <PostWrapper>
-        <article>
-          <PostTitle>{frontmatter.title}</PostTitle>
-          <PostDate>{frontmatter.date}</PostDate>
+      <Container>
+        <PostWrapper>
+          <article>
+            <PostTitle>{frontmatter.title}</PostTitle>
+            <PostDate>{frontmatter.date}</PostDate>
 
-          <PostContent dangerouslySetInnerHTML={{ __html: html }} />
-        </article>
+            <PostContent dangerouslySetInnerHTML={{ __html: html }} />
+          </article>
 
-        <PostPagination>
-          {prev && (
-            <div>
-              <span>previous</span>
-              <Link to={prev.fields.slug}> {prev.frontmatter.title}</Link>
-            </div>
-          )}
+          <PostPagination>
+            {prev && (
+              <div>
+                <span>previous</span>
+                <Link to={prev.fields.slug}> {prev.frontmatter.title}</Link>
+              </div>
+            )}
 
-          {next && (
-            <div>
-              <span>next</span>
-              <Link to={next.fields.slug}> {next.frontmatter.title}</Link>
-            </div>
-          )}
-        </PostPagination>
-        <Tags tags={frontmatter.tags} />
-      </PostWrapper>
+            {next && (
+              <div>
+                <span>next</span>
+                <Link to={next.fields.slug}> {next.frontmatter.title}</Link>
+              </div>
+            )}
+          </PostPagination>
+          <Tags tags={frontmatter.tags} />
+        </PostWrapper>
+      </Container>
     </Layout>
   );
 };
@@ -114,7 +117,7 @@ const PostContent = styled.section`
   }
 
   code {
-    font-family: 'Source Sans Pro', monospace;
+    font-family: "Source Sans Pro", monospace;
     overflow-x: auto;
     white-space: pre-wrap;
   }
@@ -165,7 +168,7 @@ const PostPagination = styled.nav`
   }
 
   & a::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     right: 0;

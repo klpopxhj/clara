@@ -1,9 +1,10 @@
-import React from 'react';
-import { Link, graphql } from 'gatsby';
-import Layout from '../components/layout';
-import PostList from '../components/post-list';
-import StyledLink from '../components/styled-link';
-import styled from 'styled-components';
+import React from "react";
+import { Link, graphql } from "gatsby";
+import Layout from "../components/layout";
+import PostList from "../components/post-list";
+import StyledLink from "../components/styled-link";
+import styled from "styled-components";
+import Container from "../components/container";
 
 const TagsTemplate = ({ pageContext, data }) => {
   const { tag } = pageContext;
@@ -13,33 +14,35 @@ const TagsTemplate = ({ pageContext, data }) => {
 
   return (
     <Layout title={title}>
-      <TagsTemplateWrapper>
-        <Title>
-          {totalCount} posts tagged "{tag}"
-        </Title>
-        <Link
-          css={`
-            margin-top: var(--size-400);
-            display: inline-block;
-            color: inherit;
-            text-transform: uppercase;
-          `}
-          to="/tags"
-        >
-          view all tags
-        </Link>
-        <PostList posts={posts} />
+      <Container>
+        <TagsTemplateWrapper>
+          <Title>
+            {totalCount} posts tagged "{tag}"
+          </Title>
+          <Link
+            css={`
+              margin-top: var(--size-400);
+              display: inline-block;
+              color: inherit;
+              text-transform: uppercase;
+            `}
+            to="/tags"
+          >
+            view all tags
+          </Link>
+          <PostList posts={posts} />
 
-        <StyledLink
-          css={`
-            margin-top: var(--size-400);
-            display: inline-block;
-          `}
-          to="/tags"
-        >
-          View All tags
-        </StyledLink>
-      </TagsTemplateWrapper>
+          <StyledLink
+            css={`
+              margin-top: var(--size-400);
+              display: inline-block;
+            `}
+            to="/tags"
+          >
+            View All tags
+          </StyledLink>
+        </TagsTemplateWrapper>
+      </Container>
     </Layout>
   );
 };

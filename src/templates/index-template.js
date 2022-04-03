@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import styled from "styled-components";
-import StyledLink from "../components/styled-link";
+import Container from "../components/container";
 import Newsletter from "../components/newsletter";
 import Hero from "../components/hero";
 import Featured from "../components/featured";
@@ -10,26 +10,30 @@ import Featured from "../components/featured";
 import tw from "tailwind-styled-components";
 
 const HomePage = ({ data }) => {
-  // const posts = data.allMarkdownRemark.nodes;
   const intro = data.markdownRemark.html;
   const title = data.markdownRemark.frontmatter.title;
   const ctaText = data.markdownRemark.frontmatter.ctaText;
   const ctaLink = data.markdownRemark.frontmatter.ctaLink;
 
   return (
-    <Layout title={title}>
-      <Intro
+    <>
+      <Layout title={title}>
+        <Hero content={intro} />
+
+        {/* <Intro
         dangerouslySetInnerHTML={{
           __html: intro,
         }}
-      />
-      <Hero />
-      <Featured />
-      {/* <Button>
+      /> */}
+        <Container>
+          <Featured />
+          {/* <Button>
         <StyledLink to={ctaLink}>{ctaText}</StyledLink>
       </Button> */}
-      <Newsletter />
-    </Layout>
+          <Newsletter />
+        </Container>
+      </Layout>
+    </>
   );
 };
 

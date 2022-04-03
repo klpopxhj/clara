@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import styled from "styled-components";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import Container from "../components/container";
 
 const ServicesTemplate = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
@@ -10,11 +11,13 @@ const ServicesTemplate = ({ data }) => {
 
   return (
     <Layout title={frontmatter.title}>
-      <ServicesWrapper>
-        <ServicesImageWrapper image={profileImage} alt="" />
+      <Container>
+        <ServicesWrapper>
+          <ServicesImageWrapper image={profileImage} alt="" />
 
-        <ServicesCopy dangerouslySetInnerHTML={{ __html: html }} />
-      </ServicesWrapper>
+          <ServicesCopy dangerouslySetInnerHTML={{ __html: html }} />
+        </ServicesWrapper>
+      </Container>
     </Layout>
   );
 };

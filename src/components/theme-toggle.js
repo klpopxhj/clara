@@ -7,15 +7,21 @@ export default function ThemeToggle() {
       {({ theme, toggleTheme }) => {
         if (theme == null) return null;
         return (
-          <label>
+          <div className="toggle">
             <input
-              class="form-checkbox h-5 w-5 text-gray-600"
+              id="toggle"
+              className="form-checkbox opacity-0 h-0 w-0"
               type="checkbox"
               onChange={(e) => toggleTheme(e.target.checked ? "dark" : "light")}
               checked={theme === "dark"}
-            />{" "}
-            <span></span>
-          </label>
+            />
+
+            {theme === "dark" ? (
+              <label for="toggle">🌞</label>
+            ) : (
+              <label for="toggle">🌙</label>
+            )}
+          </div>
         );
       }}
     </ThemeToggler>
