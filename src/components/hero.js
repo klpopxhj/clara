@@ -7,7 +7,7 @@ const Hero = ({ content }) => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        className="absolute block w-full"
+        className="absolute block w-full z-1"
         style={{ margin: "auto" }}
         height={680}
         preserveAspectRatio="none"
@@ -86,7 +86,7 @@ const Hero = ({ content }) => {
           </path>
         </g>
       </svg>
-      <div className="container mx-auto px-6 py-6 md:px-12 xl:px-32 z-10">
+      <div className="container mx-auto px-6 py-6 md:px-12 xl:px-32 z-2">
         <div className="text-center text-gray-800">
           <div
             className="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12 backdrop-blur-sm  bg-white/50 dark:bg-gray-800/70 dark:text-gray-100"
