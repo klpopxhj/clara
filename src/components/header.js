@@ -42,9 +42,9 @@ const Header = () => {
       <header
         className={`${
           onTop
-            ? ""
-            : "shadow-sm bg-gray-100 dark:bg-gray-800 dark:text-gray-100 text-gray-800 drop-shadow-md backdrop-blur-md"
-        } sticky top-0 z-10 transition-shadow`}
+            ? "text-gray-100 "
+            : "shadow-sm bg-white/30 dark:bg-gray-800/30 dark:text-gray-100 text-gray-800 drop-shadow-md"
+        } sticky top-0 z-10 transition-shadow backdrop-blur-lg`}
       >
         <HeaderNavList>
           <HeaderTitle className="grow shrink basis-7/12">

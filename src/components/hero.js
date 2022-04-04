@@ -5,11 +5,11 @@ import Container from "./container";
 const Hero = ({ content }) => {
   return (
     <section className="mb-40">
-      {/* <svg
+      <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         className="absolute block w-full"
-        style={{ margin: "auto", zIndex: -10 }}
+        style={{ margin: "auto" }}
         height={680}
         preserveAspectRatio="none"
         viewBox="0 0 1920 880"
@@ -86,7 +86,7 @@ const Hero = ({ content }) => {
             />
           </path>
         </g>
-      </svg> */}
+      </svg>
       <div className="container mx-auto px-6 py-6 md:px-12 xl:px-32">
         <div className="text-center text-gray-800">
           <div
