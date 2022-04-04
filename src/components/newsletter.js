@@ -4,7 +4,7 @@ const Newsletter = () => {
   return (
     <section className="mb-16 text-gray-800">
       <div
-        className="relative overflow-hidden bg-no-repeat bg-cover"
+        className=" overflow-hidden bg-no-repeat bg-cover"
         style={{
           backgroundPosition: "50%",
           backgroundImage:
@@ -12,14 +12,13 @@ const Newsletter = () => {
           height: "300px",
         }}
       />
-      
+
       <div className="container text-gray-800 px-4 md:px-12">
         <div
-          className="block rounded-lg shadow-lg py-10 md:py-12 px-4 md:px-6"
+          className="block rounded-lg backdrop-blur-sm shadow-lg py-10 md:py-12 px-4 md:px-6"
           style={{
             marginTop: "-100px",
             background: "hsla(0, 0%, 100%, 0.8)",
-            backdropFilter: "blur(30px)",
           }}
         >
           <div className="flex flex-wrap justify-center text-center lg:text-left">

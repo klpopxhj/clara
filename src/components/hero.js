@@ -1,6 +1,5 @@
 import React from "react";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
-import Container from "./container";
 
 const Hero = ({ content }) => {
   return (
@@ -87,14 +86,12 @@ const Hero = ({ content }) => {
           </path>
         </g>
       </svg>
-      <div className="container mx-auto px-6 py-6 md:px-12 xl:px-32">
+      <div className="container mx-auto px-6 py-6 md:px-12 xl:px-32 z-10">
         <div className="text-center text-gray-800">
           <div
-            className="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12"
+            className="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12 backdrop-blur-sm  bg-white/50 dark:bg-gray-800/70 dark:text-gray-100"
             style={{
               marginTop: "180px",
-              backgroundColor: "hsla(0, 0%, 100%, 0.8)",
-              backdropFilter: "saturate(200%) blur(25px)",
             }}
           >
             <div
