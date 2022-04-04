@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AniLink from "gatsby-plugin-transition-link/AniLink";
 import Link from "gatsby-plugin-transition-link";
@@ -10,6 +10,8 @@ import ThemeToggle from "./theme-toggle";
 import tw from "tailwind-styled-components";
 
 const Header = () => {
+  const [onTop, setOnTop] = useState(true);
+
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -22,43 +24,57 @@ const Header = () => {
     `
   );
 
-  return (
-    <StyledHeader>
-      <HeaderWrapper>
-        <HeaderTitle>
-          <Link to="/">{site.siteMetadata.title}</Link>
-        </HeaderTitle>
+  const handleScroll = () => {
+    if (onTop !== (window.pageYOffset === 0)) {
+      setOnTop(window.pageYOffset === 0);
+    }
+  };
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
+  return (
+    <HeaderWrapper>
+      <header
+        className={`${
+          onTop
+            ? ""
+            : "shadow-sm bg-gray-100 dark:bg-gray-800 dark:text-gray-100 text-gray-800 drop-shadow-md backdrop-blur-md"
+        } sticky top-0 z-10 transition-shadow`}
+      >
         <HeaderNavList>
-          <HeaderNavListItem>
+          <HeaderTitle className="grow shrink basis-7/12">
+            <Link to="/">{site.siteMetadata.title}</Link>
+          </HeaderTitle>
+
+          <HeaderNavListItem className="">
             <AniLink paintDrip hex="#d9e4f5" to="/blog">
               Blog
             </AniLink>
           </HeaderNavListItem>
-          {/* 
-          <HeaderNavListItem>
-            <AniLink paintDrip hex="#f5e3e6" to="/about">
-              About
-            </AniLink>
-          </HeaderNavListItem> */}
 
-          <HeaderNavListItem>
+          <HeaderNavListItem className="">
             <AniLink paintDrip hex="#d9e4f5" to="/services">
-              Service Model
+              Services
             </AniLink>
           </HeaderNavListItem>
 
-          <HeaderNavListItem>
+          <HeaderNavListItem className="">
             <AniLink paintDrip hex="#f5e3e6" to="/contact">
               Contact
             </AniLink>
           </HeaderNavListItem>
-          <HeaderNavListItem>
+
+          <HeaderNavListItem className="">
             <ThemeToggle />
           </HeaderNavListItem>
         </HeaderNavList>
-      </HeaderWrapper>
-    </StyledHeader>
+      </header>
+    </HeaderWrapper>
   );
 };
 
@@ -76,21 +92,10 @@ const HeaderNavListItem = ({ children }) => {
   return <StyledNavListItem>{children}</StyledNavListItem>;
 };
 
-const StyledHeader = tw.header`
-bg-gray-100
-dark:bg-gray-800
-dark:text-gray-100
-text-gray-800
-drop-shadow-md
-  sticky top-0
-`;
-
-const HeaderWrapper = tw(Container)`
-    flex
-    items-center
-    justify-between
-    py-3
-    from-accent-100 to-accent-300 via-accent-200 h-2 bg-gradient-to-tr
+const HeaderWrapper = tw.div`
+  fixed
+  top-0
+  w-full
 `;
 
 const HeaderTitle = tw.div`
@@ -103,9 +108,8 @@ const HeaderTitle = tw.div`
 `;
 
 const StyledNav = tw.nav`
-  static
-  p-0
-  backdrop-blur	
+  px-5
+  py-3
 `;
 
 const StyledNavList = tw.ul`
@@ -113,7 +117,6 @@ const StyledNavList = tw.ul`
   items-center
   flex-wrap	
   justify-around	
-  p-0	
   list-none	
 `;
 
